@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "470368143116",
+    "project_id": "jkk-kiranaclub",
+    "storage_bucket": "jkk-kiranaclub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470368143116:android:2518446424c7b4a7b3ab29",
+        "android_client_info": {
+          "package_name": "com.kiranaclub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470368143116-n4ganiiulk1vo8hj7davetfar7f3ic6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIB1-OMwTFJXfq82NHhMB2mocSc8yi6BM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470368143116-n4ganiiulk1vo8hj7davetfar7f3ic6d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
