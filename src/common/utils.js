@@ -1,12 +1,12 @@
 import { Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { UserInterface } from './interface';
+import { StoreInterface, UserInterface } from './interface';
 import {firebase} from "../../config"
 
 const width = Dimensions.get('window').width;
 const MAX_WIDTH = 320
 
-export const scale = (size:number) => {
+export const scale = (size) => {
     return size * (width / MAX_WIDTH)
 }
 
@@ -23,7 +23,7 @@ export const getUser = async () => {
     }
 }; 
 
-export const setUser = async (user: UserInterface | null) => {
+export const setUser = async (user) => {
     try{
         await AsyncStorage.setItem('user', JSON.stringify(user))
         return {
@@ -36,7 +36,7 @@ export const setUser = async (user: UserInterface | null) => {
     }
 }
 
-export const fetchUserById = async (userId:string) => {
+export const fetchUserById = async (userId) => {
     try {
       const usersCollectionRef = firebase.firestore().collection("users");
       const userDoc = await usersCollectionRef.doc(userId).get();
@@ -61,4 +61,22 @@ export const fetchUserById = async (userId:string) => {
             isUser: false
         }
     }
-  };
+};
+
+export const fetchStoresByIds = async (storeIds) => {
+    try {
+        const storesCollectionRef = firebase.firestore().collection("stores");
+        const querySnapshot = await storesCollectionRef.where(firebase.firestore.FieldPath.documentId(), "in", storeIds).get();
+
+        const stores = []
+        querySnapshot.forEach((doc) => {
+            const storeData = doc.data();
+            const storeId = doc.id;
+            stores.push({id: storeId, ...storeData});
+        })
+
+        return stores
+    }catch(error) {
+        return []
+    }
+}
