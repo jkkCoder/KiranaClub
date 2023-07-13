@@ -3056,6 +3056,8 @@ const mockData = {
     "users": {
       "f9ceb8a8-8d11-4ac2-ba8c-8771613ab2a5": {
         "name": "Ram",
+        "username": "ram",
+        "password": "retialpulse",
         "stores": [
           "ac533b7d-52fa-406f-9491-47c4502f67b9",
           "d596bacc-4c96-485f-a143-d1a493124c39",
@@ -3279,6 +3281,8 @@ const mockData = {
       },
       "db4f73b6-5f22-4ca0-bcdb-0ad15749c46e": {
         "name": "Shyam",
+        "username":"shyam",
+        "password":"retailpulse",
         "stores": [
           "aff12345-1f23-42ee-9986-a0086ee35b47",
           "1075f393-c356-426c-8b2c-daabf9639bbd",
