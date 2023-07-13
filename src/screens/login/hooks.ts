@@ -3,6 +3,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import {firebase} from "../../../config"
 import { setUser } from "../../common/utils";
 import { useEffect, useState } from "react";
+import {useDispatch} from "react-redux";
+import {addUser} from "../../redux/userSlice"
 
 export const useLogin = () => {
     const [loginData, setLoginData] = useState({
@@ -12,6 +14,7 @@ export const useLogin = () => {
     const [showWarning, setShowWarning] = useState(false)
     const [disableButton, setDisableButton] = useState(false)
     const navigation = useNavigation<StackNavigationProp<any>>();
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if(loginData.username === "" && loginData.password === "")
@@ -26,7 +29,6 @@ export const useLogin = () => {
         if(!querySnapshot.empty){
           const user = querySnapshot?.docs[0]?.data()
           const userId = querySnapshot?.docs[0]?.id
-          console.log("user id ", userId)
           if(user?.password !== loginData?.password){
             setShowWarning(true)
             setDisableButton(false)
@@ -38,6 +40,13 @@ export const useLogin = () => {
             id: userId,
             username: user?.username
           })
+
+          dispatch(addUser({
+            id: userId,
+            username: user?.username,
+            stores: user?.stores
+          }))
+
           navigation.navigate('storeListing')
     
           

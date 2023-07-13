@@ -5,8 +5,10 @@ import StoreDetails from './src/screens/store-details';
 import {  NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import Login from './src/screens/login';
-import { getUser, setUser } from './src/common/utils';
+import { getUser } from './src/common/utils';
 import { Text } from 'react-native';
+import {Provider} from "react-redux"
+import store from './src/redux/store';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +18,6 @@ const App = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const user = await getUser()
-      console.log('user', user)
       if(!user?.user){
         setInitialRoute('login')
       }
@@ -29,16 +30,19 @@ const App = () => {
     isLoading ? (
       <Text>Opening app...</Text>
     ) : (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName={initialRoute}  screenOptions={{
-          headerShown:false
-        }}>
-          <Stack.Screen name="storeListing" component={StoreListing} />
-          <Stack.Screen name="storeDetails" component={StoreDetails} />
-          {/* auth routes */}
-          <Stack.Screen name="login" component={Login} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName={initialRoute}  screenOptions={{
+            headerShown:false
+          }}>
+            <Stack.Screen name="storeListing" component={StoreListing} />
+            <Stack.Screen name="storeDetails" component={StoreDetails} />
+            {/* auth routes */}
+            <Stack.Screen name="login" component={Login} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+      
     )
   )
 }
