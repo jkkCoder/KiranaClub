@@ -26,5 +26,12 @@ export default StyleSheet.create({
         fontSize: scale(16),
         color: colors.white,
         paddingLeft: scale(10), 
+    },
+    logout:{
+        backgroundColor: colors.skyBlue,
+        position: 'absolute',
+        right: scale(10),
+        padding: scale(7),
+        borderRadius: scale(5)
     }
 })

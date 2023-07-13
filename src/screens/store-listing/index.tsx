@@ -17,7 +17,7 @@ const StoreListing = () => {
 
   return (
     <>
-      <ScreenHeader title="Stores" />
+      <ScreenHeader title="Stores" showLogout/>
       <PaddingView>
         <TextInput 
           placeholder='Search stores'
