@@ -4,6 +4,7 @@ import PaddingView from '../../common/components/padding-view'
 import useStore from './hooks'
 import StoreCard from './components/store-card'
 import ScreenHeader from '../../common/components/screen-header'
+import styles from './styles'
 
 const StoreListing = () => {
   const {fetchStores,isLoading, page, stores,loadMore} = useStore()
@@ -26,7 +27,7 @@ const StoreListing = () => {
           )}
           onEndReached={loadMore}
           onEndReachedThreshold={0.1}
-          ListFooterComponent={isLoading ? <Text>Loading...</Text> : <></>}
+          ListFooterComponent={isLoading ? <Text style={styles.loadingTxt}>Loading...</Text> : <></>}
         />
       </PaddingView>
     </>
