@@ -65,9 +65,7 @@ const useStore = () => {
     }
     
     const loadMore = async () => {
-        console.log('triggering', !isLoading, hasMore(), search.length)
         if(!isLoading  && hasMore() && search.length === 0){
-            console.log('in')
             await fetchStores()
         }
     }
