@@ -1,11 +1,12 @@
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import React from 'react'
+import PaddingView from './src/common/components/padding-view'
 
 const App = () => {
   return (
-    <View>
+    <PaddingView>
       <Text>Hello world</Text>
-    </View>
+    </PaddingView>
   )
 }
 
