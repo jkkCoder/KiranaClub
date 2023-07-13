@@ -9,7 +9,8 @@ export default StyleSheet.create({
         borderWidth: scale(1.2),
         borderColor: 'grey',
         borderRadius: scale(5),
-        backgroundColor: colors.skyBlue
+        backgroundColor: colors.skyBlue,
+        marginVertical: scale(10)
     },
     name: {
         color: colors.black,

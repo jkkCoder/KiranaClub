@@ -77,6 +77,7 @@ export const fetchStoresByIds = async (storeIds) => {
 
         return stores
     }catch(error) {
+        console.log("error is ", error)
         return []
     }
 }
