@@ -4,11 +4,12 @@ import styles from './styles'
 
 interface Props {
   children: ReactNode
+  customeStyles?: any
 }
 
-const PaddingView = ({children} : Props) => {
+const PaddingView = ({children,customeStyles} : Props) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, customeStyles]}>
       {children}
     </View>
   )
