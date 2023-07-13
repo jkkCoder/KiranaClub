@@ -4,7 +4,7 @@ export interface UserInterface{
 }
 
 export interface StoreInterface{
-    id:string;
+    id?:string;
     address: string;
     area: string;
     name: string;
