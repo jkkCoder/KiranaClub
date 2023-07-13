@@ -5,9 +5,11 @@ import useStore from './hooks'
 import StoreCard from './components/store-card'
 import ScreenHeader from '../../common/components/screen-header'
 import styles from './styles'
+import { TextInput } from 'react-native-gesture-handler'
 
 const StoreListing = () => {
-  const {fetchStores,isLoading, page, stores,loadMore} = useStore()
+  const {fetchStores,isLoading, stores,loadMore, search, setSearch,filteredStore} = useStore()
+  console.log('filtered store is ', filteredStore)
 
   useEffect(() => {
     fetchStores()
@@ -17,9 +19,15 @@ const StoreListing = () => {
     <>
       <ScreenHeader title="Stores" />
       <PaddingView>
+        <TextInput 
+          placeholder='Search stores'
+          style={styles.search}
+          value={search}
+          onChangeText={text => setSearch(text)}
+        />
         <FlatList
           removeClippedSubviews
-          data={stores}
+          data={filteredStore?.length > 0 ? filteredStore : stores}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item?.id || item?.name + item?.address}
           renderItem={({item}) => (
