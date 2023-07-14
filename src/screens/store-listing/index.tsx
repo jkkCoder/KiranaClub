@@ -27,6 +27,7 @@ const StoreListing = () => {
         />
         <FlatList
           removeClippedSubviews
+          decelerationRate="fast"
           data={filteredStore?.length > 0 ? filteredStore : stores}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item?.id || item?.name + item?.address}
