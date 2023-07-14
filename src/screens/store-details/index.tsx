@@ -21,8 +21,8 @@ const StoreDetails = () => {
       <ScreenHeader title="Store Details" hasBack />
       <PaddingView>
         <CardContainer key={id} address={address} area={area} name={name} route={route} type={type} />
-        {isUploading && <UploadCard imageUri={imageUri} progress={Math.floor(progress)}/>}
-        <Pressable style={styles.button} onPress={openCamera}>
+        {isUploading && imageUri && <UploadCard imageUri={imageUri} progress={Math.floor(progress)}/>}
+        <Pressable disabled={isUploading} style={[styles.button, isUploading?styles.disable:{}]} onPress={openCamera}>
           <Text style={styles.buttonText}>Upload photo</Text>
         </Pressable>
       </PaddingView>

@@ -1,8 +1,8 @@
 import {useState} from "react"
 import ImagePicker from 'react-native-image-crop-picker';
-import {getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable, uploadString} from "firebase/storage"
+import {getDownloadURL, getStorage, ref, uploadBytesResumable, uploadString} from "firebase/storage"
 import { makePostRequest } from "../../common/utils";
-
+import Toast from 'react-native-toast-message'
 
 const useStoreDetail = (id:string | undefined) => {
     const [imageUri, setImageUri] = useState("")
@@ -51,13 +51,24 @@ const useStoreDetail = (id:string | undefined) => {
 
                         setTimeout(() => {
                             setIsUploading(false)
-                        },1000)
+                            Toast.show({
+                                type:"success",
+                                text1:"Image uploaded successfully",
+                                position: "bottom",
+                            })
+                        },500)
                     });
                 }
             );
             }).catch(err=> {
                 console.log("error is ", err)
                 setIsUploading(false)
+                Toast.show({
+                    type:"error",
+                    text1:"upload failed, try again",
+                    position: "bottom",
+                })
+                
             })
     }
 

@@ -7,6 +7,7 @@ import 'react-native-gesture-handler';
 import Login from './src/screens/login';
 import { Text } from 'react-native';
 import useApp from './hooks';
+import Toast from 'react-native-toast-message'
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,7 @@ const App = () => {
           {/* auth routes */}
           <Stack.Screen name="login" component={Login} />
         </Stack.Navigator>
+        <Toast />
       </NavigationContainer>
     )
   )
