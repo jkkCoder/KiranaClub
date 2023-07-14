@@ -11,6 +11,14 @@ const useStoreDetail = (id:string | undefined) => {
 
     const storage = getStorage()
 
+    const showErrorToast = () => {
+        Toast.show({
+            type:"error",
+            text1:"upload failed, try again",
+            position: "bottom",
+        })
+    }
+
     const openCamera = () => {
         console.log("camera opened")
         ImagePicker.openCamera({
@@ -41,13 +49,17 @@ const useStoreDetail = (id:string | undefined) => {
                     (error) => {
                     // Handle unsuccessful uploads
                     console.log('error uploading', error)
+                    showErrorToast()
                     }, 
                     () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
                         console.log('File available at', downloadURL);
 
                         // store the url in our backend
-                        await makePostRequest(downloadURL, id)
+                        const {success} = await makePostRequest(downloadURL, id)
+                        if(!success){
+                            showErrorToast()
+                        }
 
                         setTimeout(() => {
                             setIsUploading(false)
@@ -62,13 +74,7 @@ const useStoreDetail = (id:string | undefined) => {
             );
             }).catch(err=> {
                 console.log("error is ", err)
-                setIsUploading(false)
-                Toast.show({
-                    type:"error",
-                    text1:"upload failed, try again",
-                    position: "bottom",
-                })
-                
+                setIsUploading(false)                
             })
     }
 
