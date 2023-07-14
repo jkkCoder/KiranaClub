@@ -8,6 +8,7 @@ import Login from './src/screens/login';
 import { Text } from 'react-native';
 import useApp from './hooks';
 import Toast from 'react-native-toast-message'
+import LotteView from "lottie-react-native"
 
 const Stack = createStackNavigator();
 
@@ -18,7 +19,7 @@ const App = () => {
 
   return (
     isLoading ? (
-      <Text>Opening app...</Text>
+      <LotteView style={{flex:1, height:"100%",alignSelf:'center'}} source={require("./assets/kirana-splash.json")} autoPlay />
     ) : (
       <NavigationContainer>
         <Stack.Navigator initialRouteName={initialRoute}  screenOptions={{
