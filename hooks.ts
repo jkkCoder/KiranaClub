@@ -16,10 +16,6 @@ const useApp = (setInitialRoute: React.Dispatch<React.SetStateAction<string>>
             const res = await fetchUserById(user?.user?.id)
             if(res?.isUser){
               dispatch(addUser(res.payload))
-            }else{
-              //in case userId is not found in db
-              setInitialRoute('login')
-              await setUser(null)
             }
           }
           setIsLoading(false)
