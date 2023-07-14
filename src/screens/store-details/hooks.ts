@@ -6,6 +6,8 @@ import { makePostRequest } from "../../common/utils";
 
 const useStoreDetail = (id:string | undefined) => {
     const [imageUri, setImageUri] = useState("")
+    const [progress, setProgress] = useState(0)
+    const [isUploading, setIsUploading] = useState(false)
 
     const storage = getStorage()
 
@@ -15,6 +17,7 @@ const useStoreDetail = (id:string | undefined) => {
             width: 300,
             height: 400,
             }).then(async (image) => {
+            setIsUploading(true)
             setImageUri(image.path)
 
             const storageRef = ref(storage, `images/${image.path}`)
@@ -33,7 +36,7 @@ const useStoreDetail = (id:string | undefined) => {
             uploadTask.on('state_changed', 
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
+                    setProgress(progress)
                     }, 
                     (error) => {
                     // Handle unsuccessful uploads
@@ -45,19 +48,24 @@ const useStoreDetail = (id:string | undefined) => {
 
                         // store the url in our backend
                         await makePostRequest(downloadURL, id)
+
+                        setTimeout(() => {
+                            setIsUploading(false)
+                        },1000)
                     });
                 }
             );
-            
-            
             }).catch(err=> {
-            console.log("error is ", err)
-        })
+                console.log("error is ", err)
+                setIsUploading(false)
+            })
     }
 
     return {
         openCamera,
-        imageUri
+        imageUri,
+        progress,
+        isUploading
     }
 }
 
