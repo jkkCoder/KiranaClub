@@ -42,13 +42,13 @@ export default StyleSheet.create({
     },
     modalContent:{
         backgroundColor: 'white',
-        padding: 20,
-        borderRadius: 8,
+        padding: scale(20),
+        borderRadius: scale(8),
     },
     btnContainer:{ 
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: 20,
+        marginTop: scale(20),
     },
     btn:{
         backgroundColor:colors.lightblue,
