@@ -1,7 +1,7 @@
 import { View, Text, Pressable,Modal, TouchableOpacity } from 'react-native'
 import React, {useState} from 'react'
 import styles from './styles';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import {useDispatch} from "react-redux"
 import { setUser } from '../../utils';
 import { addUser } from '../../../redux/userSlice';
@@ -27,7 +27,11 @@ const ScreenHeader = ({hasBack = false, title, showLogout=false}: Props) => {
       username: null,
       stores: null
     }))
-    navigation.navigate('login')
+    // navigation.navigate('login')
+    navigation.dispatch(CommonActions.reset({
+      index: 0,
+      routes: [{ name: 'login' }],
+    }));
   }
   return (
     <View style={styles.container}>

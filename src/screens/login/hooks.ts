@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { CommonActions,  useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import {firebase} from "../../../config"
 import { setUser } from "../../common/utils";
@@ -47,7 +47,11 @@ export const useLogin = () => {
             stores: user?.stores
           }))
 
-          navigation.navigate('storeListing')
+          // navigation.navigate('storeListing')
+          navigation.dispatch(CommonActions.reset({
+            index: 0,
+            routes: [{ name: 'storeListing' }],
+          }));
     
           
         }else{
