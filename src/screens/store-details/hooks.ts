@@ -1,9 +1,10 @@
 import {useState} from "react"
 import ImagePicker from 'react-native-image-crop-picker';
 import {getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable, uploadString} from "firebase/storage"
+import { makePostRequest } from "../../common/utils";
 
 
-const useStoreDetail = () => {
+const useStoreDetail = (id:string | undefined) => {
     const [imageUri, setImageUri] = useState("")
 
     const storage = getStorage()
@@ -39,8 +40,11 @@ const useStoreDetail = () => {
                     console.log('error uploading', error)
                     }, 
                     () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
                         console.log('File available at', downloadURL);
+
+                        // store the url in our backend
+                        await makePostRequest(downloadURL, id)
                     });
                 }
             );

@@ -81,3 +81,26 @@ export const fetchStoresByIds = async (storeIds) => {
         return []
     }
 }
+
+export const makePostRequest = async (url, storeId) => {
+    try {
+      const storeVisit= firebase.firestore().collection("store_visits");
+      const currentTime = new Date().toISOString();
+  
+      // Create a new document in the "posts" collection with the provided data
+      await storeVisit.add({
+        url: url,
+        storeId: storeId,
+        time: currentTime,
+      });
+      
+      console.log("posted successful")
+      return {
+        success: true
+      }
+    } catch (error) {
+      return {
+        success: false
+      }
+    }
+};

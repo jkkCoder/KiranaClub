@@ -14,7 +14,7 @@ const StoreDetails = () => {
   const routes = useRoute<StoreDetailsRouteProp>()
 
   const { address, area, name, route, type, id } = routes?.params
-  const {openCamera, imageUri} = useStoreDetail()
+  const {openCamera, imageUri} = useStoreDetail(id)
   return (
     <>
       <ScreenHeader title="Store Details" hasBack />
