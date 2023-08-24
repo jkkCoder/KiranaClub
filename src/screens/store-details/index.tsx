@@ -23,7 +23,7 @@ const StoreDetails = () => {
         <CardContainer key={id} address={address} area={area} name={name} route={route} type={type} />
         {isUploading && imageUri && <UploadCard imageUri={imageUri} progress={Math.floor(progress)}/>}
         <Pressable disabled={isUploading} style={[styles.button, isUploading?styles.disable:{}]} onPress={openCamera}>
-          <Text style={styles.buttonText}>Upload photo</Text>
+          <Text style={styles.buttonText}>Upload Photo</Text>
         </Pressable>
       </PaddingView>
     </>
